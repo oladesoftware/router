@@ -1,0 +1,19 @@
+{
+    "name": "oladesoftware/router",
+    "description": "A lightweight router written in PHP",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Oladesoftware\\Router\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Olade Software",
+            "email": "contact@oladesoftware.com"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "require": {}
+}
