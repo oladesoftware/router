@@ -7,7 +7,7 @@ A simple lightweight router implementation for handling HTTP routes written in P
 
 ## Table of Contents
 
-- [Festures](#features)
+- [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Examples](#examples)
@@ -37,6 +37,12 @@ use Oladesoftware\Router\Router;
 $router = new Router();
 
 // Start adding routes and defining your application's behavior.
+```
+
+You can install Oladesoftware Router using Composer. Run the following command in your project's root directory:
+
+```php
+composer require oladesoftware/router
 ```
 
 ## Usage
