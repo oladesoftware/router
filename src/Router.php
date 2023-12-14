@@ -3,7 +3,7 @@
  * Router Class
  *
  * @package Oladesoftware\Router
- * @version 0.0.0-alpha
+ * @version 0.0.1-alpha
  * @author Helmut
  * @license MIT License
  *
@@ -186,7 +186,7 @@ class Router{
             if(empty($action["params"])){
                 return call_user_func([new $action["target"]["controller"](), $action["target"]["method"]]);
             }
-            return call_user_func([new $action["target"]["controller"](), $action["target"]["method"]], $action["params"]);
+            return call_user_func_array([new $action["target"]["controller"](), $action["target"]["method"]], $action["params"]);
         }
         throw new RuntimeException("No valid target is provides");
     }
