@@ -1,6 +1,6 @@
 # PHP Router
 
-[![Latest Version](https://img.shields.io/badge/version-0.0.1--alpha-blue.svg)](https://github.com/oladesoftware/router)
+[![Latest Version](https://img.shields.io/badge/version-0.1.0--alpha-blue.svg)](https://github.com/oladesoftware/router)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 A simple lightweight router implementation for handling HTTP routes written in PHP. It allows you to define routes with associated targets, such as controller classes, closures, or functions. The class supports middleware assignment for more advanced routing scenarios.
@@ -19,6 +19,7 @@ A simple lightweight router implementation for handling HTTP routes written in P
 ## Features
 
 - **Route Configuration**: Easily configure routes with HTTP methods, paths, and targets.
+- **Grouped route configuration**: Easily configure many routes that have a same basepath with HTTP methods, paths, and targets
 - **Middleware Support**: Assign middleware to routes for additional processing.
 - **Dynamic Path Parameters**: Define paths with placeholders to capture dynamic values.
 - **Route Matching**: Match requested paths and methods against configured routes.
@@ -26,7 +27,12 @@ A simple lightweight router implementation for handling HTTP routes written in P
 
 ## Installation
 
-To use the Router Class, download the latest release from the [Releases section](https://github.com/oladesoftware/router/releases) of the GitHub repository. After downloading the appropriate file, include it in your project and instantiate the `Router` class as follows:
+### Download Router.php files
+
+- Go to [Releases section](https://github.com/oladesoftware/router/releases)
+- Download the Router.php file
+- Place it into your project 
+- Include it in your project and instantiate the `Router` class as follows
 
 ```php
 require_once 'path/to/Router.php';
@@ -38,8 +44,10 @@ $router = new Router();
 
 // Start adding routes and defining your application's behavior.
 ```
+### Use composer
 
-You can install Oladesoftware Router using Composer. Run the following command in your project's root directory:
+- Install composer
+- Execute command below
 
 ```php
 composer require oladesoftware/router
@@ -57,6 +65,12 @@ $router = new Router();
 
 // Add a route
 $router->addRoute('GET', '/example', ['controller' => 'ExampleController', 'method' => 'index']);
+
+// Add Grouped Route
+$router->addGroup("/blog", [
+    ["method" => "GET", "path" => "/", "target" => ["controller" => "BlogController", "method" => "index"]],
+    ["method" => "GET", "path" => "/posts", "target" => ["controller" => "BlogController", "method" => "posts"], "name" => "blog.posts"]
+]);
 
 // Match a requested path and method
 $result = $router->match('/example', 'GET');
@@ -97,6 +111,15 @@ $router->addRoute('GET', '/home', ['controller' => 'HomeController', 'method' =>
 ```php
 $router->addRoute('GET', '/admin', ['controller' => 'AdminController', 'method' => 'dashboard'])
     ->middleware('admin_auth');
+```
+
+### Add grouped route
+
+```php
+$router->addGroup("/blog", [
+    ["method" => "GET", "path" => "/", "target" => ["controller" => "BlogController", "method" => "index"]],
+    ["method" => "GET", "path" => "/posts", "target" => ["controller" => "BlogController", "method" => "posts"], "name" => "blog.posts"]
+]);
 ```
 
 ## License

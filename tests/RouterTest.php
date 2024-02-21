@@ -31,6 +31,15 @@ class RouterTest extends TestCase
         $this->assertInstanceOf(Router::class, $result);
     }
 
+    public function testAddGroup()
+    {
+        $result = $this->router->addGroup("/blog", [
+            ["method" => "GET", "path" => "/", "target" => ["controller" => "BlogController", "method" => "index"]],
+            ["method" => "GET", "path" => "/posts", "target" => ["controller" => "BlogController", "method" => "posts"], "name" => "blog.posts"]
+        ]);
+        $this->assertInstanceOf(Router::class, $result);
+    }
+
     public function testRouteMatched()
     {
         $this->router->addRoute("GET", "/test", function (){
@@ -52,6 +61,7 @@ class RouterTest extends TestCase
             return "It works!";
         });
         $result = $this->router->match("/test", "GET");
+        $this->assertEquals("It works!", $this->router->run($result));
         $this->assertEquals("It works!", $this->router->run($result));
     }
 

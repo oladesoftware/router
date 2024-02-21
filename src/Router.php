@@ -92,6 +92,34 @@ class Router{
     }
 
     /**
+     * Add a group of many routes with a same basepath to the router configuration.
+     *
+     * @param string $basepath Base path of the group (e.g. '/blog', '/product')
+     * @param array $routes The array of routes that will begin with the basepath
+     * (e.g. [
+     * ["method" => "GET", "path" => "/", "target"  => ["controller" => "BlogController", "method" => "index"], "name" => "blog.index"]
+     * ])
+     * @return Router|RuntimeException Returns an instance of the router for method chaining
+     */
+    public function addGroup(string $basepath, array $routes): self|RuntimeException
+    {
+        foreach ($routes as $route)
+        {
+            if(!(array_key_exists("method", $route) && array_key_exists("path", $route) && array_key_exists("target", $route)))
+            {
+                return new RuntimeException("This function expect an array of array with keys 'method', 'path', 'target'");
+            }
+            $path = "/" . trim($basepath, "/ ") . "/" . trim($route['path'],"/ ");
+            if(array_key_exists("name", $route))
+            {
+                return $this->addRoute($route["method"], $path, $route["target"], $route["name"]);
+            }
+            return $this->addRoute($route["method"], $route["path"], $route["target"]);
+        }
+        return $this;
+    }
+
+    /**
      * Assign a middleware to the last added route in the router configuration.
      *
      * @param string $name The name of the middleware to be assigned.
