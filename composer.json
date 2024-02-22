@@ -3,6 +3,7 @@
     "description": "A lightweight router written in PHP",
     "type": "library",
     "license": "MIT",
+    "homepage": "https://github.com/oladesoftware/router/blob/main/README.md",
     "autoload": {
         "psr-4": {
             "Oladesoftware\\Router\\": "src/"
