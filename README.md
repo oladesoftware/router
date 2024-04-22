@@ -1,6 +1,6 @@
 # PHP Router
 
-[![Latest Version](https://img.shields.io/badge/version-0.1.0--alpha-blue.svg)](https://github.com/oladesoftware/router)
+[![Latest Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/oladesoftware/router)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 A simple lightweight router implementation for handling HTTP routes written in PHP. It allows you to define routes with associated targets, such as controller classes, closures, or functions. The class supports middleware assignment for more advanced routing scenarios.

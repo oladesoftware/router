@@ -3,7 +3,7 @@
  * Router Class
  *
  * @package Oladesoftware\Router
- * @version 0.0.1-alpha
+ * @version 1.0.0
  * @author Helmut
  * @license MIT License
  *
@@ -40,12 +40,16 @@ class Router{
      * @var array $routes An array containing the configured routes.
      *
      * This array stores the routes configured in the router. Each route is represented as an associative array
-     * with keys 'method' for the HTTP method, 'path' for the URI path, and 'target' for the route's target.
+     * with keys:
+     * - 'method' for the HTTP method,
+     * - 'path' for the URI path,
+     * - 'target' for the route's target.
+     *
      * Example:
      * [
      *    ['method' => 'GET', 'path' => '/example', 'target' => ['controller' => 'ExampleController, 'method' => 'index'],
      *    ['method' => 'POST', 'path' => '/submit', 'target' => function() { ... }],
-     *    // ...
+     *    ...
      * ]
      *
      * @access private
@@ -55,14 +59,14 @@ class Router{
      * @var array $namedRoutes An array mapping route names to their corresponding paths.
      *
      * This array is used to associate names with specific routes, allowing for easy route generation.
+     *
      * Example:
-     * ```
      * [
      *    'home' => '/home',
      *    'profile' => '/user/profile',
-     *    // ...
+     *    ...
      * ]
-     * ```
+     *
      * @access private
      */
     private array $namedRoutes = [];
@@ -127,9 +131,7 @@ class Router{
      * @return self Returns an instance of the router for method chaining.
      *
      * Example:
-     * ```
      * $router->addRoute('GET', '/example', ['controller' => 'ExampleController, 'method' => 'index'])->middleware('auth');
-     * ```
      */
     public function middleware(string $name): self
     {
