@@ -139,9 +139,9 @@ class Router{
             $path = "/" . trim($basepath, "/ ") . "/" . trim($route['path'] ?? $route[1],"/ ");
             if(array_key_exists("name", $route) || array_key_exists(3, $route))
             {
-                return $this->addRoute($route["method"] ?? $route[0], $path, $route["target"] ?? $route[2], $route["name"] ?? $route[3]);
+                $this->addRoute($route["method"] ?? $route[0], $path, $route["target"] ?? $route[2], $route["name"] ?? $route[3]);
             }
-            return $this->addRoute($route["method"] ?? $route[0], $path, $route["target"] ?? $route[2]);
+            $this->addRoute($route["method"] ?? $route[0], $path, $route["target"] ?? $route[2]);
         }
         return $this;
     }
