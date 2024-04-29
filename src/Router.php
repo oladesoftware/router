@@ -141,7 +141,10 @@ class Router{
             {
                 $this->addRoute($route["method"] ?? $route[0], $path, $route["target"] ?? $route[2], $route["name"] ?? $route[3]);
             }
-            $this->addRoute($route["method"] ?? $route[0], $path, $route["target"] ?? $route[2]);
+            else
+            {
+                $this->addRoute($route["method"] ?? $route[0], $path, $route["target"] ?? $route[2]);
+            }
         }
         return $this;
     }
