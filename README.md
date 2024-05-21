@@ -1,6 +1,6 @@
 # PHP Router
 
-[![Latest Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/oladesoftware/router)
+[![Latest Version](https://img.shields.io/badge/version-1.1.4-blue.svg)](https://github.com/oladesoftware/router)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 A simple lightweight router implementation for handling HTTP routes written in PHP.
