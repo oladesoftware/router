@@ -68,3 +68,14 @@ if (!$route) {
     $router->run($route);
 }
 ```
+
+## Add dynamic route
+
+Defines a route with a dynamic segment using regex.
+
+```php
+Router::getInstance()
+  ->addRoute("GET", "/user/edit/(?<userID>[0-9]+)", [UserController::class, "edit"])
+  ->middleware("authenticated")
+;
+```
