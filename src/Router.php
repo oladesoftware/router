@@ -126,10 +126,13 @@ class Router{
      *
      * @param string $basepath Base path of the group (e.g. '/blog', '/product')
      * @param array $routes The array of routes that will begin with the basepath
-     * (e.g. [
-     * ["method" => "GET", "path" => "/", "target"  => ["controller" => "BlogController", "method" => "index"], "name" => "blog.index"]
-     * ["GET", "/", ["BlogController", "post"]]
-     * ])
+     * (e.g.
+     * [
+     *   ["method" => "GET", "path" => "/", "target"  => ["controller" => "BlogController", "method" => "index"], "name" => "blog.index"],
+     *   ["GET", "/", ["BlogController", "post"]],
+     *   ["GET|POST", "/articles/new", ["BlogController", "newPost"], "middleware" => "authenticated"]
+     * ]
+     * )
      * @return Router Returns an instance of the router for method chaining
      */
     public function addGroup(string $basepath, array $routes): self
@@ -137,13 +140,17 @@ class Router{
         foreach ($routes as $route)
         {
             $path = "/" . trim($basepath, "/ ") . "/" . trim($route['path'] ?? $route[1],"/ ");
-            if(array_key_exists("name", $route) || array_key_exists(3, $route))
+            if(array_key_exists("name", $route))
             {
                 $this->addRoute($route["method"] ?? $route[0], $path, $route["target"] ?? $route[2], $route["name"] ?? $route[3]);
             }
             else
             {
                 $this->addRoute($route["method"] ?? $route[0], $path, $route["target"] ?? $route[2]);
+            }
+            if(array_key_exists("middleware", $route))
+            {
+                $this->middleware($route["middleware"]);
             }
         }
         return $this;
